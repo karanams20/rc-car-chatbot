@@ -24,7 +24,7 @@
 <body>
   <h2>🔧 RC Car Parts Chatbot</h2>
   <p>Ask about any part, e.g., "RC-MA-00104-01" or "ball bearings"</p>
-  <input type="text" id="userInput" placeholder="Enter part name or code">
+<input type="text" id="userInput" placeholder="Enter part name or code" onkeypress="if(event.key==='Enter') sendMessage();">
   <button onclick="sendMessage()">Search</button>
   <div id="responseArea"></div>
 
@@ -39,7 +39,8 @@
         body: JSON.stringify({ message: input })
       });
       const data = await res.json();
-      responseArea.innerHTML = `<strong>Response:</strong><br>${data.reply}`;
+      responseArea.innerHTML = `<strong>Result:</strong><br><br>` + data.reply.replace(/\n/g, "<br>");
+
     }
   </script>
 </body>
